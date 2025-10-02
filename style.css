@@ -1,0 +1,72 @@
+/* ============================================================
+   ARQUIVO DE ESTILOS (CSS)
+   ------------------------------------------------------------
+   Mantemos tudo SIMPLES. Este arquivo só cuida da aparência,
+   não tem nenhuma lógica de programação.
+   ============================================================ */
+
+body {
+  font-family: Arial, sans-serif; /* Fonte fácil de ler */
+  margin: 16px;                   /* Espaço nas bordas da página */
+}
+
+h1, h2 {
+  margin: 8px 0;                  /* Espaço acima/abaixo dos títulos */
+}
+
+fieldset {
+  border: 1px solid #ccc;         /* Borda cinza clara ao redor das seções */
+  padding: 10px;                  /* Espaço interno */
+  margin: 10px 0;                 /* Espaço externo entre seções */
+}
+
+label {
+  display: block;                 /* Cada label em uma linha */
+  margin: 6px 0;                  /* Espaço vertical entre labels */
+}
+
+button {
+  margin: 4px 0;                  /* Pequeno espaço acima/abaixo dos botões */
+}
+
+table {
+  width: 100%;                    /* Tabela ocupa toda a largura */
+  border-collapse: collapse;      /* Bordas coladas (sem espaços duplos) */
+  margin-top: 10px;               /* Espaço antes da tabela */
+}
+
+th, td {
+  border: 1px solid #ccc;         /* Borda simples nas células */
+  padding: 6px;                   /* Espaço interno das células */
+  text-align: left;               /* Alinhar texto à esquerda */
+}
+
+.linha {
+  display: flex;                  /* Coloca elementos lado a lado */
+  gap: 12px;                      /* Espaço entre os elementos lado a lado */
+  align-items: center;            /* Alinha verticalmente ao centro */
+  flex-wrap: wrap;                /* Permite quebrar linha em telas pequenas */
+}
+
+.direita {
+  text-align: right;              /* Alinha à direita (usado no total) */
+}
+
+/* ============================================================
+   REGRAS PARA IMPRESSÃO (PDF)
+   ------------------------------------------------------------
+   Quando o usuário clicar em "Gerar PDF", o navegador abre a
+   tela de impressão. Aqui escondemos botões e deixamos visível
+   apenas o conteúdo do carrinho.
+   ============================================================ */
+@media print {
+  .no-print { display: none !important; } /* Some com botões */
+  body * { visibility: hidden; }          /* Esconde todo o resto */
+  #area_relatorio, #area_relatorio * {
+    visibility: visible;                  /* Mostra só o carrinho com total */
+  }
+  #area_relatorio {
+    position: absolute; left: 0; top: 0; width: 100%;
+  }
+}
+

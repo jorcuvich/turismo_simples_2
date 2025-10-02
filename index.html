@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agência de Turismo — 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!--
+    TÍTULO DA PÁGINA
+    Esta é apenas a parte visual. Toda a lógica está no arquivo app.js.
+  -->
+  <h1>Agência de Turismo (Versão Didática)</h1>
+
+  <!-- ===================== SEÇÃO 1: PACOTES PRONTOS ===================== -->
+  <fieldset>
+    <legend>1) Pacotes prontos</legend>
+
+    <!--
+      Esta DIV começa vazia. O JavaScript vai LER o vetor "vetorPacotesProntos"
+      e CRIAR o conteúdo aqui dentro, gerando:
+        - o nome do pacote
+        - o preço formatado
+        - um campo de quantidade
+        - dois botões (Adicionar / Remover 1)
+    -->
+    <div id="area_pacotes_prontos"></div>
+  </fieldset>
+
+  <!-- ===================== SEÇÃO 2: MONTE SEU PACOTE ===================== -->
+  <fieldset>
+    <legend>2) Monte seu pacote</legend>
+
+    <!--
+      DESTINOS (RÁDIOS)
+      Esta DIV também é preenchida pelo JavaScript com base no vetor "vetorDestinos".
+      Serão criados botões de rádio (um por destino). O primeiro já vem marcado.
+    -->
+    <label><strong>Destino</strong></label>
+    <div id="area_destinos"></div>
+
+    <!--
+      NOITES (número) + HOTEL (select)
+      O select de hotel é preenchido pelo JavaScript usando o vetor "vetorHoteis".
+    -->
+    <div class="linha">
+      <label> Noites:
+        <input id="campo_noites" type="number" min="1" value="2" style="width:80px">
+      </label>
+
+      <label> Hotel:
+        <select id="lista_hoteis"></select>
+      </label>
+    </div>
+
+    <!--
+      EXTRAS (checkboxes)
+      Também são criados pelo JavaScript a partir do vetor "vetorExtras".
+    -->
+    <label><strong>Extras</strong></label>
+    <div id="area_extras"></div>
+
+    <!--
+      OBSERVAÇÕES (texto livre) + QUANTIDADE do pacote personalizado + BOTÃO para adicionar ao carrinho
+    -->
+    <div class="linha">
+      <input id="campo_observacoes" type="text" placeholder="Observações (ex.: cama extra)" style="flex:1">
+      <input id="campo_qtd_personalizado" type="number" min="1" value="1" style="width:80px">
+      <button class="no-print" onclick="adicionarPacotePersonalizado()">Adicionar pacote personalizado</button>
+    </div>
+
+    <!--
+      PREÇO ESTIMADO
+      Este valor é recalculado sempre que o usuário muda: destino, noites, hotel ou extras.
+    -->
+    <div id="preco_estimado"><em>Preço estimado: R$ 0,00</em></div>
+  </fieldset>
+
+  <!-- ===================== SEÇÃO 3: VOO (OPCIONAL) ===================== -->
+  <fieldset>
+    <legend>3) Voo (opcional)</legend>
+
+    <!--
+      SELECT DE VOOS (preenchido pelo JavaScript com base em "vetorVoos")
+      Campo de quantidade de passagens (por exemplo, 2 pessoas) e botão para adicionar.
+    -->
+    <select id="lista_voos"></select>
+    <input id="campo_qtd_voo" type="number" min="1" value="1" style="width:80px">
+    <button class="no-print" onclick="adicionarVoo()">Adicionar voo</button>
+  </fieldset>
+
+  <!-- ===================== SEÇÃO 4: CARRINHO (TABELA) ===================== -->
+  <fieldset id="area_relatorio">
+    <h2>4) Carrinho</h2>
+
+    <!--
+      TABELA DO CARRINHO:
+      - O corpo <tbody> começa vazio.
+      - O JavaScript cria uma LINHA por item adicionado.
+      - Cada linha mostra: nome, detalhes, preço unitário, quantidade, subtotal e botões.
+    -->
+    <table id="tabela_carrinho">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Detalhes</th>
+          <th>Unitário</th>
+          <th>Qtd</th>
+          <th>Subtotal</th>
+          <th class="no-print">Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- TOTAL GERAL -->
+    <p class="direita"><strong>Total: <span id="valor_total">R$ 0,00</span></strong></p>
+  </fieldset>
+
+  <!-- BOTÕES GERAIS -->
+  <div class="no-print linha" style="justify-content: space-between;">
+    <button onclick="limparCarrinho()">Limpar pedido</button>
+    <button onclick="window.print()">Gerar PDF</button>
+  </div>
+
+  <!-- Ligamos o JavaScript ao final, assim temos certeza que o HTML já foi carregado -->
+  <script src="script.js"></script>
+</body>
+</html>
+
